@@ -2,19 +2,16 @@
   <div>One</div>
 </template>
 <script lang="ts" setup>
-const token = useCookie('token', {
-  maxAge: 60 * 60 * 24 * 15, // 15天
-})
-token.value = 'tokenValue'
+const cookie = 'token=tokenValue'
 
 await $fetch('/api/postApi', {
   method: 'post',
-  headers: useRequestHeaders(['cookie']),
+  headers: { cookie  },
 });
 
 await $fetch('/api/postApi', {
   method: 'post',
-  headers: useRequestHeaders(['cookie']),
+  headers: { cookie  },
   body: {
     foo: 'bar'
   }
